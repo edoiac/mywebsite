@@ -11,3 +11,8 @@ body {
     text-align: center;
     color: red;
 }
+
+h1 {
+    font-size: 3rem;
+    color: green;
+}
