@@ -1,0 +1,21 @@
+In inglese
+
+Photo
+Catchphrase
+Name surname
+
+Portfolio 
+
+Bio (vedi Cover per BendingSpoons)
+
+Contacts
+
+Education / Job experiences
+
+Skills
+
+Code (re)view / Charding.js or NGX-guided-tour / GitHub
+
+Cv download
+
+Social (LinkedIn, FreeCodeCamp)
