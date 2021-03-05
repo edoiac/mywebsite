@@ -1,0 +1,14 @@
+
+html {
+    font-size: 10px;
+}
+
+body {
+    width: 100vh;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-align: center;
+    color: red;
+}
