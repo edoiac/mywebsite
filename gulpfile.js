@@ -1,42 +1,58 @@
-const { dest, src, watch } = require("gulp");
+const { dest, src, watch, series, parallel } = require("gulp");
 const minify = require('gulp-minify');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require("gulp-dart-sass");
 const cleanCSS = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
+const del = require('del');
 
+let isDevBuild = true;
+const distDir = './dist/';
+const srcDir = './src/';
 
-
-function html() {
-    return src("./src/**/*.html")
-    .pipe(dest("./dist/"))
+const clean = async () => {
+    return await del(distDir, { force: true });
 }
 
-function js() {
-    return src("./src/**/*.js")
-    .pipe(sourcemaps.init())
-    .pipe(minify())
-    .pipe(sourcemaps.write())
-    .pipe(dest("./dist/"))
+const html = () => {
+    return src(srcDir + "**/*.html")
+        .pipe(dest(distDir))
 }
 
-function scss() {
-	return src("./src/**/*.scss")
+const js = (isDevBuild) => {
+    let source = src(srcDir + "**/*.js")
+    if (isDevBuild) source = source.pipe(sourcemaps.init())
+    source = source.pipe(minify())
+    if (isDevBuild) source = source.pipe(sourcemaps.write())
+    return source.pipe(dest(distDir))
+}
+
+const scss = () => {
+    return src(srcDir + "**/*.scss")
         .pipe(sass())
         .pipe(cleanCSS())
-		.pipe(dest("./dist/"));
+        .pipe(dest(distDir));
 }
 
-function serve() {
-    watch("./src/**/*.html").on('change', html);
-    watch("./src/**/*.js").on('change', js);
-    watch("./src/**/*.scss").on('change', scss);
+const taskImpl = () => {
+    return series(clean, parallel(html, js, scss));
+}
+
+const serve = () => {
+    isDevBuild = true;
+    watch(srcDir + "**/*").on('change', taskImpl());
     browserSync.init({
         server: {
-            baseDir: "./dist/"
+            baseDir: distDir
         }
     });
-    watch("./dist/**/*").on('change', browserSync.reload);
+    watch(distDir + "**/*").on('change', browserSync.reload);
 }
 
-exports.default = serve;
+const build = () => {
+    isDevBuild = false;
+    return taskImpl()
+}
+
+exports.build = build();
+exports.default = series(taskImpl(), serve);
