@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Karla Alvarez | Web developer</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description"
+            content="Karla Alvarez, web developer based in Milan. HTML, CSS3, Javascript, AngularJS.">
+        <meta property="og:title" content="Karla Alvarez, web developer based in Milan.">
+        <meta property="og:description"
+            content="Karla Alvarez, web developer based in Milan. HTML, CSS3, Javascript, AngularJS.">
+        <meta property="og:image" content="">
+        <meta property="og:type" content="website">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <script src="main-min.js"> </script>
+        <script src="https://kit.fontawesome.com/29a384f11f.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="page">
+            <header>
+                <button class="toggle-menu" onclick="toggleMenu()">
+                    <div class="line one"></div>
+                    <div class="line two"></div>
+                    <div class="line three"></div>
+                </button>
+
+
+                <div id="pagination-wrapper">
+                    <div id="current">
+                        <span>01</span>
+                    </div>
+                    <div class="pagination-line"></div>
+                    <div id="total">
+                        <span>02</span>
+                    </div>
+                </div>
+
+                <div id="menu-wrapper">
+                    <ul id="menu">
+                        <li id="01" class="menu-link active" onclick="activePage('01')">
+                            <a href="#home">Home</a>
+                        </li>
+
+                        <li id="02" class="menu-link" onclick="activePage('02')">
+                            <a href="#about-me">About me</a>
+                        </li>
+
+                        <!-- <li id="03" class="menu-link" onclick="activePage('03')">
+                            <a href="#work">Work</a>
+                        </li>
+
+                        <li id="04" class="menu-link" onclick="activePage('04')">
+                            <a href="#portfolio">Portfolio</a>
+                        </li>
+
+                        <li id="05" class="menu-link" onclick="activePage('05')">
+                            <a href="#coding">Coding</a>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div id="info-wrapper">
+                    <div class="my-info">
+                        <p class="my-info-title">
+                            Name
+                        </p>
+                        <p class="my-info-content">
+                            Karla Alvarez
+                        </p>
+                    </div>
+
+                    <div class="my-info">
+                        <p class="my-info-title">
+                            Role
+                        </p>
+                        <p class="my-info-content">
+                            Web developer
+                        </p>
+                    </div>
+
+                    <div class="my-info">
+                        <p class="my-info-title">
+                            Email
+                        </p>
+                        <p class="my-info-content">
+                            karla.alvarezf@gmail.com
+                        </p>
+                    </div>
+                </div>
+
+            </header>
+
+            <section id="home">
+                <div id="hello">
+                    <div class="container">
+                        <p class="big">Hi! My name is</p>
+                        <h1>Karla Alvarez</h1>
+                        <p>Wannabe Web developer based in Milan.</p>
+                        <p>Since I dipped my toes in the world of coding, I grew more and more passionate about it,
+                            hence
+                            the decision of switching careers (currently, I am working as a Store Manager).</p>
+                        <p>I am willing to start from scratch, very motivated to work my way up and I am eager to learn.
+                        </p>
+
+                        <div id="buttons-container">
+                            <a href="https://www.linkedin.com/in/karlaalvarezfallas/" target="_blank">
+                                <div class="button-social">LinkedIn</div>
+                            </a>
+                            <a href="https://github.com/karlaalv/mywebsite/files/6144313/CV.Karla.Alvarez.pdf" download>
+                                <div class="button-social">Download CV</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="img-wrapper">
+                    <picture id="profile-img">
+                        <source media="(min-width:769px)" srcset="./assets/fotoAlvarezDesktop.jpg">
+                        <source media="(max-width:768px)" srcset="./assets/fotoAlvarezMobile.jpg">
+                        <img src="./assets/fotoAlvarezDesktop.jpg" alt="Karla Alvarez web developer" style="width:auto;">
+                    </picture>
+                </div>
+            </section>
+
+            <section id="about-me">
+                <h2>About me</h2>
+                <div class="cards container">
+                    <div class="bio card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-alt"></i>
+                        </div>
+                        <div class="card-title">
+                            <h3>Bio</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Exotic as my name may sound, I grew up in Venice and lived and studied in Gorizia and
+                                Rome.</p>
+
+                            <p> In 2013, I moved to Milan looking for a job opportunity which I did eventually find and
+                                where I am currently at.</p>
+                            <p> While it was not quite "The one", the past five years as a Store Manager of a shop
+                                located in Central Station I have learned a lot, from interpersonal to management
+                                related skills .</p>
+
+                            <p>Most importantly, I consider myself adaptable, a multitasker and a pragmatic
+                                problem-solver.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="education card">
+                        <div class="card-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="card-title">
+                            <h3>Education</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="timeline-wrapper">
+                                <ul>
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">ongoing</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>FreeCodeCamp JavaScript Algorithms and Data Structures Certification</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2021</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>FreeCodeCamp Responsive Web Certification<br>
+                                                HTML CSS JavaScript</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2020</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Web Design and Dev Master (Sinervis Academy)<br>
+                                                HTML CSS JavaScript PHP MySQL WordPress</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2011</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Proofreading Course (Bel-Ami edizioni)</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2009</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Bachelor's Degree in Public Relations<br>
+                                                106/110</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2005</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>High School Diploma in Classical Studies<br>
+                                                70/100</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- <section id="work">
+                <div class="cards container">
+                    <div class="skills card">
+                        <div class="card-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <div class="card-title">
+                            <h3>Skills</h3>
+                        </div>
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                    <div class="experiences card">
+                        <div class="card-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="card-title">
+                            <h3>Experiences</h3>
+                        </div>
+                        <div class="card-content">
+                            <div id="timeline-wrapper">
+                                <ul>
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2016 - ongoing</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Store Manager at La Trottola</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2014 - 2015 </div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Saleswoman at La Trottola</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2013</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Receptionist DSQUARED2</p>
+                                            <p>Junior Store Manager a La Rinascente</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2012</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Receptionist ResidenzaRomaCentro</p>
+                                            <p>Rome Deputy Mayor Press office intern</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2007 - 2012</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Press officer and event planner</p>
+                                        </div>
+                                    </li>
+
+                                    <li class="timeline-event">
+                                        <div class="timeline-date">2009</div>
+                                        <div class="timeline-circle"></div>
+                                        <div class="timeline-content">
+                                            <p>Alpine Fis Ski World Cup Ladies 2009 Press office intern</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio">
+                <div id="projects-grid">
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div>
+            </section>
+
+            <section id="coding">
+                <div class="cards container">
+                    <div class="github card">
+                        <div class="card-icon">
+                            <img>
+                        </div>
+                        <div class="card-title">
+                        </div>
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                    <div class="freecodecamp card">
+                        <div class="card-icon">
+                            <img>
+                        </div>
+                        <div class="card-title">
+
+                        </div>
+                        <div class="card-content">
+
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <footer>
+                <div id="copy">
+                    <p> <b>&copy; <span id="year"><script>document.write(new Date().getFullYear())</script></span> Karla Alvarez | Web developer </b><br>
+                        <span>C.F. LVRKLM86B65Z503S | Milano</span>
+                    </p>
+                </div>
+            </footer>
+        </div>
+
+
+
+    </body>
+
+</html>
