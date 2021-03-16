@@ -14,6 +14,11 @@ const clean = async () => {
     return await del(distDir, { force: true });
 }
 
+const assets = () => {
+    return src(srcDir + "assets/**/*.jpg")
+        .pipe(dest(distDir + "assets"))
+}
+
 const html = () => {
     return src(srcDir + "**/*.html")
         .pipe(dest(distDir))
@@ -35,7 +40,7 @@ const scss = () => {
 }
 
 const taskImpl = () => {
-    return series(clean, parallel(html, js, scss));
+    return series(clean, parallel(assets, html, js, scss));
 }
 
 const serve = () => {

@@ -1,14 +1,24 @@
 
     $purple: #302729;
-    $cardbg: #3D3134;
+    $lightpurple: #3D3134;
     $lilac: #A88590;
     $salmon: #F37B83;
+    $darksalmon: #C6646B;
     $white: #F9F2FA;
 
     %flex {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    %left-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 320px;
+        height: 100vh;
+        text-align: left;
+        z-index: 3;
     }
 
 * {
@@ -17,36 +27,44 @@
 
 html {
     font-size: 10px;
+    scroll-behavior: smooth;
+
+    @media screen and (max-width: 425px) {
+        font-size: 9px;
+    }
 }
 
 body {
     width: 100vw;
     margin: 0;
     padding: 0;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;;
+    font-size: 1.5rem;
     line-height: 1.5;
     text-align: center;
+    color: $white;
     background: $purple;
-    color: $white;
 }
 
-a {
+
+a, button, ul {
     all: unset;
-    color: $white;
+    cursor: pointer;
 }
 
+a:visited {
+    color: $white!important;
+  }
+
+li {
+    list-style-type: none;
+}
 
 header {
     @extend %flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 100vh;
-    background: blue;
-    text-align: left;
-
+    @extend %left-bar;
+    background: $purple;
+    border-right: 1px solid $lightpurple;
     ul {
         all: unset!important;
 
@@ -58,39 +76,70 @@ header {
     @media screen and (max-width: 992px) {
         width: 100vw;
         height: 60px;
-        padding: 0 50px;
+        padding: 0 5rem;
+        border-right: 0;
+        border-bottom: 2px solid $lightpurple;
         justify-content: space-between;
+    }
+
+    @media screen and (max-width: 425px) {
+        padding: 0 3rem;
     }
 }
 
-.line {
-    height: 3px;
-    margin-bottom: 4px;
-    transition: all 0.25s;
-    background: $white;
-}
+    %line {
+        height: 3px;
+        margin-bottom: 5px;
+        background: $white;
+		transition: 0.4s;
+    }
 
-#toggle-menu {
+.toggle-menu {
     position: absolute;
     top: 30px;
     left: 30px;
     z-index: 3;
 
-    .one {
+    .line.one {
+        @extend %line;
         width: 16px;
     }
-    .two {
+    .line.two  {
+        @extend %line;
         width: 12px;
-        background: $salmon;
     }
-    .three {
-        width: 22px;
+    .line.three  {
+        @extend %line;
+        width: 23px;
     }
 
     @media screen and (max-width: 992px) {
         position: unset;
     }
 }
+
+.toggle-menu:hover {
+    #line2 {
+        background: $salmon;
+    }
+}
+
+.line.one.open {
+    -webkit-transform: rotate(-45deg) translate(-7px,8px);
+    transform: rotate(-45deg) translate(-5px,0px);
+    transition: transform 0.8s ease-in-out;
+    width: 29px;
+  }
+.line.two.open {
+    opacity: 0;
+}
+.line.three.open {
+    -webkit-transform: rotate(45deg) translate(-3px, -4px);
+    transform: rotate(45deg) translate(-11px, -6px);
+    transition: transform 0.8s ease-in-out;
+    width: 29px;
+}
+ 
 
 #pagination-wrapper {
     @extend %flex;
@@ -101,13 +150,19 @@ header {
     width: 180px;
     height: 50px;
     z-index: 3;
+    font-weight: 700;
+
+    #current {
+        color: $darksalmon;
+    }
 
     #current, #total {
         width: 30px;
         height: 30px;
         padding: 5px;
     }
-    .pagination {
+    .pagination-line {
+        @extend %line;
         width: 100px;
     }
 
@@ -117,8 +172,56 @@ header {
 }
 
 #menu-wrapper {
-    display: none;
+    @extend %flex;
+    @extend %left-bar;
+    background: $salmon;
+    transform: translate3d(-320vw, 0, 0);
+    transition: transform 0.8s ease-in-out;
+    z-index: 1;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        transform: translate3d(0, -320vh, 0);
+        transition: transform 0.8s ease-in-out;
+    }
 }
+
+#menu-wrapper.is-visible {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.8s ease-in-out;
+
+    @media screen and (max-width: 768px) {
+        transform: translate3d(0vh, 0, 0);
+        transition: transform 0.8s ease-in-out;
+    }
+}
+
+li.menu-link {
+    width: fit-content;
+    margin-top: 15px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+li.menu-link::after {
+    display:block;
+    content: '';
+    position: relative;
+    top: -15px;
+    width: 0;
+    height: 15px;
+    background: $darksalmon;
+    transition: width .3s;
+    z-index: -1; 
+}
+
+li.menu-link:hover::after, li.menu-link.active::after {
+    width: 105%;
+}
+
+
+
 
 #info-wrapper {
     position: relative;
@@ -129,6 +232,8 @@ header {
 
         .my-info-title {
             text-transform: uppercase;
+            font-size: 1.3rem;
+            letter-spacing: 0.5rem;
             color: $salmon;
         }
         .my-info-content {
@@ -142,28 +247,235 @@ header {
 }
 
 section {
-    height: 100vh;
-    padding: 20px;
-}
+    height: fit-content;
+    padding-left: 320px;
+    background: $purple;
 
+    @media screen and (max-width: 992px) {
+        padding: 0;
+    }
+}
 h1 {
-    font-size: 10rem;
+    width: 200px;
+    text-align: left;
+    font-size: 6rem;
     color: $salmon;
 }
 
 #home {
-    width: 450px;
-    margin-left: 320px;
+    @extend %flex;
+    justify-content: space-between;
+    flex-wrap: wrap-reverse;
+    height: fit-content;
     background: $white;
+    
+    .container {
+        padding-top: 0!important;
+        padding-bottom: 0!important;
+    }
 
     @media screen and (max-width: 992px) {
         margin: 60px 0 0 0;
     }
 
+}
+
+#hello {
+    width: 50%;
+    margin: auto;
+    text-align: left;
+
+    p {
+        color: $lilac;
+    }
+
+    .big {
+        font-size: 2.5rem;
+        color: $lightpurple;
+    }
+
     @media screen and (max-width: 768px) {
-        width: 100vw;
+    width: 90%;
+    }
+}
+.button-social {
+    width: fit-content;
+    background: $lilac;
+    padding: 10px 30px;
+    margin: 20px 0;
+    border-radius: 50px;
+    border: 2px solid $salmon;
+
+}
+
+.container {
+    padding: 50px 30px;
+
+    @media screen and (max-width: 425px) {
+        padding: 30px 20px;
+    }
+
+}
+
+#img-wrapper {
+    @extend %flex;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+
+    overflow: hidden;
+
+    img {
+        display: block;
+        object-fit: contain;
+    }
+
+     @media screen and (max-width: 768px) {
+       position: absolute;
+       top: 80px;
+       right: 20px;
+       width: 320px;
+       height: 320px;
+       border-radius: 320px;
+    } 
+
+    @media screen and (max-width: 670px) {
+       position: unset;
+       margin: auto;
+       border-radius: 0;
+    } 
+}
+
+#about-me {
+    padding-top: 80px;
+    background: transparent;
+}
+h2 {
+    all: unset;
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.cards.container {
+    @extend %flex;
+    justify-content: space-around;
+    flex-flow: row wrap; 
+}
+
+.card {
+    width: 450px;
+    height: fit-content;
+    padding: 30px;
+    margin: 0 15px 15px 0;
+    background: $lightpurple;
+    border-radius: 5px;
+    color: $lilac;
+    text-align: left;
+
+    @media screen and (max-width: 768px) {
+        width: 90%;
+     }
+    
+     @media screen and (max-width: 425px) {
+        width: 100%;
+        margin: auto auto 15px auto;
+        padding: 30px 20px;
+    } 
+}
+
+h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $salmon;
+    text-align: left;
+}
+.card-icon {
+    text-align: left;
+    font-size: 7rem;
+    color: $lilac;
+}
+
+#timeline-wrapper {
+    text-align: left;
+    width: 100%;
+    font-size: 1.4rem;
+        li {
+            @extend %flex;
+            justify-content: space-around;
+        } 
+}
+
+.timeline-event {
+    @extend %flex;
+    align-items: baseline;
+}
+
+.timeline-date {
+    width: 75px;
+    min-width: 60px;
+    position: relative;
+    color: $salmon;
+
+}
+
+.timeline-circle::before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 10px;
+    width: 29px;
+    height: 29px;
+    border-radius: 29px;
+    border: 3px solid #f37b83;
+}
+
+.timeline-circle::after {
+    content: "";
+    display: block;
+    position: relative;
+    top: -17.3px;
+    left: 7px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #f37b83;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.timeline-content {
+    width: 300px;
+    margin-left: 20px;
+}
+
+.timeline-event:hover {
+    .timeline-date {
+        font-weight: 700;
+    }
+    .timeline-circle::after {
+        opacity: 1;
+    }
+    .timeline-content {
+        color: $white;
     }
 }
 
+footer {
+    @extend %flex;
+    margin-left: 320px;
+    padding: 10px;
+    font-size: 1.3rem;
+    background: $darksalmon;
+    color: $white;
+    letter-spacing: 0.1rem;
+
+    @media screen and (max-width: 768px) {
+        margin: 0;
+    }
+
+}
 
 
+// ANIMATIONS //
+
+  
