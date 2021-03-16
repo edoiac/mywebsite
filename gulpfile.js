@@ -7,7 +7,7 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 
 let isDevBuild = true;
-const distDir = './root/';
+const distDir = './docs/';
 const srcDir = './src/';
 
 const clean = async () => {
