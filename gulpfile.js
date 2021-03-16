@@ -15,7 +15,7 @@ const clean = async () => {
 }
 
 const assets = () => {
-    return src(srcDir + "assets/**/*.jpg")
+    return src(srcDir + "assets/**/*")
         .pipe(dest(distDir + "assets"))
 }
 
